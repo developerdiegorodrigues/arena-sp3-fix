@@ -3,9 +3,15 @@ import sys
 import argparse
 import quickfix
 from application import Application
+import logging
+from model.logger import setup_logger
+
+setup_logger("logclient", "./log-client.log")
+logClient = logging.getLogger("logclient")
 
 def main(config_file):
     """Main"""
+    logClient.info("Initiator logging started")
     try:
         settings = quickfix.SessionSettings(config_file)
         application = Application()
@@ -18,7 +24,7 @@ def main(config_file):
         initiator.stop()
 
     except (quickfix.ConfigError, quickfix.RuntimeError) as e:
-        print(e)
+        logClient.info(f"Initiator exception | {e}")
         initiator.stop()
         sys.exit()
 

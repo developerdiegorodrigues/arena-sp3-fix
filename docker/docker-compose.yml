@@ -1,3 +1,5 @@
+### This file is not being used, docker-compose has been configured in a higher hierarchy folder
+
 version: '3'
 
 services:
