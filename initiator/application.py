@@ -80,6 +80,7 @@ class Application(quickfix.Application):
         self.processor.simulator.run(self.sessionID, self.fromApp)
         while self.leave is False:
             time.sleep(1)
+        self.processor.cleanup()
         sys.exit(0)
 
 '''

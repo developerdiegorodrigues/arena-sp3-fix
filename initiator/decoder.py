@@ -16,6 +16,7 @@ class FixDecoder:
             with open(filePath, 'r') as f:
                 fieldsData = json.load(f)
             self.fieldsMap = {field["number"]: field for field in fieldsData["fields"]["field"]}
+            f.close()
         except Exception as e:
             raise RuntimeError(f"File load error | {filePath}: {e}")
         return
