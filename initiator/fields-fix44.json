@@ -950,6 +950,10 @@
 						"description": "CANCELED"
 					},
 					{
+						"enum": "5",
+						"description": "REPLACED"
+					},
+					{
 						"enum": "6",
 						"description": "PENDING_CANCEL"
 					},
@@ -1009,6 +1013,10 @@
 						"description": "STOP_LIMIT"
 					},
 					{
+						"enum": "5",
+						"description": "MARKET_ON_CLOSE"
+					},
+					{
 						"enum": "6",
 						"description": "WITH_OR_WITHOUT"
 					},
@@ -1025,6 +1033,18 @@
 						"description": "ON_BASIS"
 					},
 					{
+						"enum": "A",
+						"description": "ON_CLOSE"
+					},
+					{
+						"enum": "B",
+						"description": "LIMIT_ON_CLOSE"
+					},
+					{
+						"enum": "C",
+						"description": "FOREX_C"
+					},
+					{
 						"enum": "D",
 						"description": "PREVIOUSLY_QUOTED"
 					},
@@ -1033,8 +1053,16 @@
 						"description": "PREVIOUSLY_INDICATED"
 					},
 					{
+						"enum": "F",
+						"description": "FOREX_F"
+					},
+					{
 						"enum": "G",
 						"description": "FOREX"
+					},
+					{
+						"enum": "H",
+						"description": "FOREX_H"
 					},
 					{
 						"enum": "I",
@@ -2245,6 +2273,14 @@
 					{
 						"enum": "0",
 						"description": "NEW"
+					},
+					{
+						"enum": "1",
+						"description": "PARTIAL_FILL"
+					},
+					{
+						"enum": "2",
+						"description": "FILL"
 					},
 					{
 						"enum": "3",

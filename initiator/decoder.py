@@ -21,12 +21,12 @@ class FixDecoder:
             raise RuntimeError(f"File load error | {filePath}: {e}")
         return
 
-    def decodeMessage(self, message, onlyShow=False):
+    def decodeMessage(self, msg, onlyShow=False):
         if onlyShow == True:
             if self.showDecodedMessages == 'False':
                 return
         
-        pairs = message.split('|')
+        pairs = msg.split('|')
         decodedMessage = {}
 
         for pair in pairs:

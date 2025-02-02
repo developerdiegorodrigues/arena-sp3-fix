@@ -66,7 +66,7 @@ class Processor:
     def onMessage(self, msg):
         dec = self.decoder.decodeMessage(msg, False)
         if EXECUTE_SIMULATOR == "True" and dec["SenderCompID"] != "NELOGICA":
-            print(f"Evicted: {dec['SenderCompID']}")
+            print(f"Evicted: {dec['SenderCompID']} | {dec}")
             return
         if dec["MsgType"] == "EXECUTION_REPORT":
             self.addToBuffer(dec, msg)
@@ -76,9 +76,9 @@ class Processor:
 
     def addToBuffer(self, dec, msg):
         # (datetime.now().replace(tzinfo=timezone.utc) + timedelta(hours=-3)).strftime("%Y-%m-%dT%H:%M:%S.%f")[:23]
-        current_time = datetime.now().strftime('%Y/%m/%dT%H:%M:%S.%f')[:23]
-        sending_time = datetime.strptime(dec["SendingTime"], "%Y%m%d-%H:%M:%S.%f").strftime("%Y/%m/%dT%H:%M:%S.%f")[:23]
-        transact_time = datetime.strptime(dec["TransactTime"], "%Y%m%d-%H:%M:%S.%f").strftime("%Y/%m/%dT%H:%M:%S.%f")[:23]
+        current_time = datetime.now().strftime('%Y/%m/%dT%H:%M:%S.%f')
+        sending_time = datetime.strptime(dec["SendingTime"], "%Y%m%d-%H:%M:%S.%f").strftime("%Y/%m/%dT%H:%M:%S.%f")
+        transact_time = datetime.strptime(dec["TransactTime"], "%Y%m%d-%H:%M:%S.%f").strftime("%Y/%m/%dT%H:%M:%S.%f")
         _json = {
             # Control fields
             "id":               f"{uuid.uuid4()}",
@@ -94,15 +94,15 @@ class Processor:
             "clOrdID":          dec["ClOrdID"],
             "cumQty":           float(dec["CumQty"]),
             "execID":           dec["ExecID"],
-            "execType":         mapExecType(dec["ExecType"]),
+            "execType":         mapExecType(dec["ExecType"], msg),
             "lastPx":           float(dec["LastPx"]),
             "lastQty":          float(dec["LastQty"]),
             "leavesQty":        float(dec["LeavesQty"]),
             "maxFloor":         float(dec["MaxFloor"]),
             "msgSeqNum":        int(dec["MsgSeqNum"]),
             "msgType":          8,
-            "ordStatus":        mapOrdStatus(dec["OrdStatus"]),
-            "ordType":          mapOrdType(dec["OrdType"]),
+            "ordStatus":        mapOrdStatus(dec["OrdStatus"], msg),
+            "ordType":          mapOrdType(dec["OrdType"], msg),
             "orderID":          dec["OrderID"],
             "orderQty":         float(dec["OrderQty"]),
             "origClOrdID":      dec["OrigClOrdID"],
@@ -110,11 +110,11 @@ class Processor:
             "securityExchange": dec["SecurityExchange"],
             "senderCompID":     0,
             "sendingTime":      sending_time,
-            "side":             mapSide(dec["Side"]),
+            "side":             mapSide(dec["Side"], msg),
             "stopPx":           float(dec["StopPx"]),
             "symbol":           dec["Symbol"],
             "targetCompID":     0,
-            "timeInForce":      mapTimeInForce(dec["TimeInForce"]),
+            "timeInForce":      mapTimeInForce(dec["TimeInForce"], msg),
             "transactTime":     transact_time,
             "rawMessage":       f"{msg}",
         }

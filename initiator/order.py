@@ -1,173 +1,187 @@
 def mapBeginString(value):
     match value:
-        case "FIX.1.1":
-            return 0
         case "FIX.4.0":
-            return 1
+            return 0
         case "FIX.4.1":
-            return 2
+            return 1
         case "FIX.4.2":
-            return 3
+            return 2
         case "FIX.4.3":
-            return 4
+            return 3
         case "FIX.4.4":
+            return 4
+        case "FIX.5.0":
             return 5
-        case "FIX.5.0":
-            return 6
-        case "FIX.5.0":
-            return 7
         case _:
             return -1
 
-def mapExecType(value):
+def mapExecType(value, msg):
     match value:
         case "NEW":
-            return 0
+            return 0 # 
+        case "PARTIAL_FILL":
+            return 1 # !
+        case "FILL":
+            return 2 # !
         case "DONE_FOR_DAY":
-            return 1
+            return 3 # 
         case "CANCELED":
-            return 2
+            return 4 # 
         case "REPLACE":
-            return 3
+            return 5 # 
         case "PENDING_CANCEL":
-            return 4
+            return 6 # 
         case "STOPPED":
-            return 5
+            return 7 # 
         case "REJECTED":
-            return 6
+            return 8 # 
         case "SUSPENDED":
-            return 7
+            return 9 # 
         case "PENDING_NEW":
-            return 8
+            return 10 # A
         case "CALCULATED":
-            return 9
+            return 11 # B
         case "EXPIRED":
-            return 10
+            return 12 # C
         case "RESTATED":
-            return 11
+            return 13 # D
         case "PENDING_REPLACE":
-            return 12
+            return 14 # E
         case "TRADE":
-            return 13
+            return 15 # F
         case "TRADE_CORRECT":
-            return 14
+            return 16 # G
         case "TRADE_CANCEL":
-            return 15
+            return 17 # H
         case "ORDER_STATUS":
-            return 16
+            return 18 # I
         case _:
-            return -1
+            return getASCII(msg, 150) + 500
 
-def mapOrdStatus(value):
+def mapOrdStatus(value, msg):
     match value:
         case "NEW":
-            return 0
+            return 0 # 
         case "PARTIALLY_FILLED":
-            return 1
+            return 1 # 
         case "FILLED":
-            return 2
+            return 2 # 
         case "DONE_FOR_DAY":
-            return 3
+            return 3 # 
         case "CANCELED":
-            return 4
+            return 4 # 
+        case "REPLACED":
+            return 5 # !
         case "PENDING_CANCEL":
-            return 5
+            return 6 # 
         case "STOPPED":
-            return 6
+            return 7 # 
         case "REJECTED":
-            return 7
+            return 8 # 
         case "SUSPENDED":
-            return 8
+            return 9 # 
         case "PENDING_NEW":
-            return 9
+            return 10 # A
         case "CALCULATED":
-            return 10
+            return 11 # B
         case "EXPIRED":
-            return 11
+            return 12 # C
         case "ACCEPTED_FOR_BIDDING":
-            return 12
+            return 13 # D
         case "PENDING_REPLACE":
-            return 13
+            return 14 # E
         case _:
-            return -1
+            return getASCII(msg, 39) + 500
 
-def mapOrdType(value):
+def mapOrdType(value, msg):
     match value:
         case "MARKET":
-            return 0
+            return 0 # 1
         case "LIMIT":
-            return 1
+            return 1 # 2
         case "STOP":
-            return 2
+            return 2 # 3
         case "STOP_LIMIT":
-            return 3
+            return 3 # 4
+        case "MARKET_ON_CLOSE":
+            return 4 # 5 !
         case "WITH_OR_WITHOUT":
-            return 4
+            return 5 # 6
         case "LIMIT_OR_BETTER":
-            return 5
+            return 6 # 7
         case "LIMIT_WITH_OR_WITHOUT":
-            return 6
+            return 7 # 8
         case "ON_BASIS":
-            return 7
+            return 8 # 9
+        case "ON_CLOSE":
+            return 9 # A !
+        case "LIMIT_ON_CLOSE":
+            return 10 # B !
+        case "FOREX_C":
+            return 11 # C !
         case "PREVIOUSLY_QUOTED":
-            return 8
+            return 12 # D
         case "PREVIOUSLY_INDICATED":
-            return 9
+            return 13 # E
+        case "FOREX_F":
+            return 14 # F
         case "FOREX":
-            return 10
+            return 15 # !G
+        case "FOREX_H":
+            return 16 # H
         case "FUNARI":
-            return 11
+            return 17 # I
         case "MARKET_IF_TOUCHED":
-            return 12
+            return 18 # J
         case "MARKET_WITH_LEFTOVER_AS_LIMIT":
-            return 13
+            return 19 # K
         case "PREVIOUS_FUND_VALUATION_POINT":
-            return 14
+            return 20 # L
         case "NEXT_FUND_VALUATION_POINT":
-            return 15
+            return 21 # M
         case "PEGGED":
-            return 16
+            return 24 # P
         case _:
-            return -1
+            return getASCII(msg, 40) + 500
 
-def mapSide(value):
+def mapSide(value, msg):
     match value:
         case "BUY":
-            return 0
+            return 0 # 1
         case "SELL":
-            return 1
+            return 1 # 2
         case "BUY_MINUS":
-            return 2
+            return 2 # 3
         case "SELL_PLUS":
-            return 3
+            return 3 # 4
         case "SELL_SHORT":
-            return 4
+            return 4 # 5
         case "SELL_SHORT_EXEMPT":
-            return 5
+            return 5 # 6
         case "UNDISCLOSED":
-            return 6
+            return 6 # 7
         case "CROSS":
-            return 7
+            return 7 # 8
         case "CROSS_SHORT":
-            return 8
+            return 8 # 9
         case "CROSS_SHORT_EXEMPT":
-            return 9
+            return 9 # A
         case "AS_DEFINED":
-            return 10
+            return 10 # B
         case "OPPOSITE":
-            return 11
+            return 11 # C
         case "SUBSCRIBE":
-            return 12
+            return 12 # D
         case "REDEEM":
-            return 13
+            return 13 # E
         case "LEND":
-            return 14
+            return 14 # F
         case "BORROW":
-            return 15
+            return 15 # G
         case _:
-            return -1
+            return getASCII(msg, 54) + 500
 
-def mapTimeInForce(value):
+def mapTimeInForce(value, msg):
     match value:
         case "DAY":
             return 0
@@ -184,12 +198,22 @@ def mapTimeInForce(value):
         case "GOOD_TILL_DATE":
             return 6
         case "AT_THE_CLOSE":
-            return 6
+            return 7
         case _:
-            return -1
+            return getASCII(msg, 59) + 500
+
+def getASCII(msg, field):
+    _list = msg.split("|")
+    for _pair in _list:
+        if not _pair.strip():
+            continue
+        _apart = _pair.split('=')
+        if f"{_apart[0]}" == f"{field}":
+            return ord(f"{_apart[1]}")
+    return 500
 
 orderDataInsert = """
-    INSERT INTO n_order_data (
+    INSERT INTO n_order (
         id,
         "createdAt",
         "updatedAt",
