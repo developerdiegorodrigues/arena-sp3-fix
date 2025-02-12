@@ -137,7 +137,7 @@ class Processor:
                         self.logProcessor.info(f"connection.commit() exception | {e}")
                         self.logProcessor.info(traceback.format_exc())
                         self.connection.rollback()
-                        self.logProcessor.info(self.messageBuffer)
+                        self.logProcessor.info(self.messageBuffer.count())
         return
     
     def cleanup(self):
