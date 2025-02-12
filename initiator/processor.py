@@ -125,7 +125,7 @@ class Processor:
 
     def writeToDatabasePeriodically(self):
         while self.running:
-            time.sleep(1)
+            time.sleep(3)
             with self.lock:
                 if self.messageBuffer:
                     try:
@@ -136,6 +136,8 @@ class Processor:
                     except Exception as e:
                         self.logProcessor.info(f"connection.commit() exception | {e}")
                         self.logProcessor.info(traceback.format_exc())
+                        self.connection.rollback()
+                        self.logProcessor.info(self.messageBuffer)
         return
     
     def cleanup(self):
