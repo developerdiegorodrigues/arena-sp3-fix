@@ -3961,6 +3961,7 @@
    <value enum='2' description='FILLED' />
    <value enum='3' description='DONE_FOR_DAY' />
    <value enum='4' description='CANCELED' />
+   <value enum='5' description='REPLACED' />
    <value enum='6' description='PENDING_CANCEL' />
    <value enum='7' description='STOPPED' />
    <value enum='8' description='REJECTED' />
@@ -4273,6 +4274,8 @@
   <field number='149' name='URLLink' type='STRING' />
   <field number='150' name='ExecType' type='CHAR'>
    <value enum='0' description='NEW' />
+   <value enum='1' description='PARTIAL_FILL' />
+   <value enum='2' description='FILL' />
    <value enum='3' description='DONE_FOR_DAY' />
    <value enum='4' description='CANCELED' />
    <value enum='5' description='REPLACE' />
